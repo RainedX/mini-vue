@@ -1,0 +1,30 @@
+{
+  "name": "mini-vue",
+  "version": "1.0.0",
+  "description": "实现一个简易的vue",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cross-env ENV=development rollup -c -w",
+    "build:dev": "rollup -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RainedX/mini-vue.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RainedX/mini-vue/issues"
+  },
+  "homepage": "https://github.com/RainedX/mini-vue#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.14.2",
+    "@babel/preset-env": "^7.14.2",
+    "cross-env": "^7.0.3",
+    "rollup": "^2.48.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-serve": "^1.1.0"
+  }
+}
