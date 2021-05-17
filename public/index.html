@@ -1,21 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <script src="/dist/vue.js"></script>
-  <script>
-    const vm = new Vue({
-      data() {
-        return {
-          name: 'rained'
-        }
-      }
-    })
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
 </html>
+<script src="/dist/vue.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+<script>
+  const vm = new Vue({
+    data() {
+      return {
+        username: 'rained',
+        info: {
+          password: 123
+        },
+        arr: [1, 2, 3, { age: 12 }]
+      };
+    },
+    computed: {},
+    methods: {},
+  });
+  console.log(vm)
+</script>
+
+
+<!-- 1.将模板变成render方法，render() { return _l(5, _c('li', {}, name)) }
+2.去当前的实例上取值 with
+3.虚拟dom ===> 对象 描述dom结构（diff算法）
+4.生成真实dom -->
