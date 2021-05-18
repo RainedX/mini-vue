@@ -7,28 +7,35 @@
     <title>Document</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app" a=1 b=2>
+      hello world
+      <ul style="color:red">
+        <li>{{ username }}</li>
+        <li>{{ age }}</li>
+      </ul>
+    </div>
   </body>
+  <script src="/dist/vue.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data() {
+        return {
+          username: 'rained',
+          age: 12,
+          info: {
+            password: 123,
+          },
+          arr: [1, 2, 3],
+        };
+      },
+      computed: {},
+      methods: {},
+    });
+    console.log(vm);
+  </script>
 </html>
-<script src="/dist/vue.js"></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
-<script>
-  const vm = new Vue({
-    data() {
-      return {
-        username: 'rained',
-        info: {
-          password: 123
-        },
-        arr: [1, 2, 3, { age: 12 }]
-      };
-    },
-    computed: {},
-    methods: {},
-  });
-  console.log(vm)
-</script>
-
 
 <!-- 1.将模板变成render方法，render() { return _l(5, _c('li', {}, name)) }
 2.去当前的实例上取值 with
