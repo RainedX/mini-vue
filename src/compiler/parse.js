@@ -13,7 +13,6 @@ const endTag = new RegExp(`^<\\/${qnameCapture}[^>]*>`);
 const doctype = /^<!DOCTYPE [^>]+>/i;
 const comment = /^<!--/; 
 const conditionalComment = /^<!\[/;
-const defaultTagRE = /\{\{((?:.|\n)+?)\}\}/g; 
 
 let root;
 let currentParent;
@@ -54,7 +53,7 @@ export function parseHTML(html) {
   }
 
   function chars(text) {
-    text = text.replace(/\s/g, '')
+    text = text.trim()
 
     if (text) {
       currentParent.children.push({
