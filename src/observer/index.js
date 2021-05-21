@@ -1,6 +1,6 @@
 import { def, hasProto, isObject } from "../utils/index";
 import { arrayMethods } from './array'
-
+import Dep from './dep'
 // 方法返回一个由指定对象的所有自身属性的属性名（包括不可枚举属性但不包括Symbol值作为名称的属性）组成的数组
 const arrayKeys = Object.getOwnPropertyNames(arrayMethods)
 
@@ -17,6 +17,7 @@ function copyAugment(target, src, keys) {
 export class Observer {
   constructor(value) {
     this.value = value
+    this.dep = new Dep()
     def(value, '__ob__', this)
 
     // value可能是对象或者是数组，为了性能考虑，数组单独处理不用defineProperty
@@ -60,10 +61,14 @@ export function observe(value) {
 
 export function defineReactive(obj, key, val) {
   observe(val)
+  let dep = new Dep()
   Object.defineProperty(obj, key, {
     enumerable: true,
     configurable: true,
     get() {
+      if (Dep.target) {
+        dep.depend();
+      }
       return val
     },
     set(newVal) {
@@ -71,6 +76,7 @@ export function defineReactive(obj, key, val) {
       // 手动设置 vm.info = { age: 12 }
       observe(newVal)
       val = newVal
+      dep.notify()
     }
   })
 }
