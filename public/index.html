@@ -15,18 +15,14 @@
       <p>{{username}}</p>
     </div>
   </body>
-  <!-- <script src="/dist/vue.js"></script> -->
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="/dist/vue.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
   <script>
     const vm = new Vue({
       el: '#app',
       data() {
         return {
           username: 'rained',
-          age: { number: 12 },
-          info: {
-            password: 123,
-          },
           arr: [1, 2, 3],
         };
       },
@@ -36,6 +32,10 @@
     setTimeout(() => {
       vm.username = 'hejing'
       vm.username = 'yay'
+      vm.arr.push(4)
+      vm.$nextTick(() => {
+        console.log(vm.$el.innerHTML)
+      })
     }, 1500)
   </script>
 </html>
