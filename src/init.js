@@ -6,6 +6,7 @@ import { mergeOptions } from "./utils/options";
 export function initMixin(Vue) {
   Vue.prototype._init = function(options) {
     const vm = this;
+    // vm.constructor不一定指向Vue，也可能是Vue.extend创造的子类
     vm.$options = mergeOptions(vm.constructor.options || {}, options);
     callHook(vm, 'beforeCreate')
     // 初始化状态
