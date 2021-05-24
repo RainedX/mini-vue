@@ -8,65 +8,28 @@
   </head>
   <body>
     <div id="app" style="color: red;">
-      <ul >
-        <li v-for="item in arr">{{ item }}</li>
-      </ul>
-      <p>{{username}}</p>
       <p>{{username}}</p>
     </div>
   </body>
   <script src="/dist/vue.js"></script>
   <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
   <script>
-    // Vue.mixin({
-    //   a: 0,
-    //   b: 2,
-    //   beforeCreate() {
-    //     console.log('before-create1');
-    //   },
-    //   created() {
-    //     console.log('create1');
-    //   }
-    // })
-    // Vue.mixin({
-    //   a: 2,
-    //   beforeCreate() {
-    //     console.log('before-create2');
-    //   },
-    //   created() {
-    //     console.log('create2');
-    //   }
-    // })
+    Vue.component('my-button', {
+      template: '<button>全局按钮</button>'
+    })
     const vm = new Vue({
       el: '#app',
       a: 3,
       data() {
         return {
-          username: 'rained',
-          arr: [1, 2, 3],
+          username: 'rained'
         };
       },
-      beforeCreate() {
-        console.log('before-create', this.username);
-      },
-      created() {
-        console.log('create', this.username);
-      },
-      computed: {},
-      methods: {},
+      components: {
+        'my-button': {
+          template: '<button>内部按钮</button>'
+        }
+      }
     });
-    setTimeout(() => {
-      vm.username = 'hejing'
-      vm.username = 'yay'
-      vm.arr.push(4)
-      vm.$nextTick(() => {
-        console.log(vm.$el.innerHTML)
-      })
-    }, 1500)
   </script>
 </html>
-
-<!-- 1.将模板变成render方法，render() { return _l(5, _c('li', {}, name)) }
-2.去当前的实例上取值 with
-3.虚拟dom ===> 对象 描述dom结构（diff算法）
-4.生成真实dom -->

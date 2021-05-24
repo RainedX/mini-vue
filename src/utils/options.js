@@ -32,13 +32,28 @@ function mergeHook (parentVal, childVal) {
   }
 }
 
+function extend (to, _from) {
+  for (var key in _from) {
+    to[key] = _from[key];
+  }
+  return to
+}
+
 LIFECYCLE_HOOKS.forEach(hook => {
   strats[hook] = mergeHook
 })
 strats.data = function (parentVal, childVal) {
     return childVal
 }
-strats.components = function () {}
+strats.components = function (parentVal, childVal) {
+  const res = Object.create(parentVal || null);
+
+  if (childVal) {
+    return extend(res, childVal)
+  } else {
+    return res;
+  }
+}
 
 const defaultStrat = function (parentVal, childVal) {
   return childVal === undefined
