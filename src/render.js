@@ -1,3 +1,4 @@
+import { nextTick } from './utils/next-tick';
 import { createElement, createTextNode } from './vdom/index';
 
 export function renderMixin(Vue) {
@@ -36,11 +37,12 @@ export function renderMixin(Vue) {
     }
     return ret;
   };
+  Vue.prototype.$nextTick = function (fn) {
+    return nextTick(fn, this)
+  }
   Vue.prototype._render = function () {
     const vm = this;
     const { render } = vm.$options;
-
-    console.log('~~~', render);
     let vnode = render.call(vm);
     return vnode;
   };

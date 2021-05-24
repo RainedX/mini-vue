@@ -12,7 +12,7 @@ methods.forEach(function (method) {
 
   def(arrayMethods, method, function mutator(...args) {
     const result = original.apply(this, args);
-
+    const ob = this.__ob__
     let inserted;
 
     switch (method) {
@@ -26,7 +26,7 @@ methods.forEach(function (method) {
     }
 
     if (inserted) this.__ob__.observeArray(inserted)
-
+    ob.dep.notify();
     return result;
   });
 });

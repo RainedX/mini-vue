@@ -1,4 +1,5 @@
 import { popTarget, pushTarget } from './dep';
+import { queueWatcher } from './scheduler';
 
 let uid = 0;
 class Watcher {
@@ -30,8 +31,12 @@ class Watcher {
       dep.addSub(this)
     }
   }
-  update() {
+  run() {
     this.get()
+  }
+  update() {
+    queueWatcher(this);
+    // this.get()
   }
 
   // 当属性取值时，需要记住和此属性相关的watcher，当数据发生变化后，去执行自己的watcher

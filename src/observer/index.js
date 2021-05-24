@@ -59,8 +59,19 @@ export function observe(value) {
   return ob
 }
 
+function dependArray(val) {
+  for (let i = 0; i < val.length; i++) {
+    let current = val[i]
+    current.__ob__ && current.__ob__.dep.depend()
+    if (Array.isArray(current)) {
+      dependArray(current)
+    }
+  }
+}
+
+// 依赖收集发生在模版编译取值的时候或者修改属性的时候
 export function defineReactive(obj, key, val) {
-  observe(val)
+  let childOb = observe(val)
   let dep = new Dep()
   Object.defineProperty(obj, key, {
     enumerable: true,
@@ -68,6 +79,12 @@ export function defineReactive(obj, key, val) {
     get() {
       if (Dep.target) {
         dep.depend();
+        if (childOb) {
+          childOb.dep.depend()
+          if (Array.isArray(val)) {
+            dependArray(val)
+          }
+        }
       }
       return val
     },
