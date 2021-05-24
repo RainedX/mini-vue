@@ -18,13 +18,39 @@
   <script src="/dist/vue.js"></script>
   <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
   <script>
+    // Vue.mixin({
+    //   a: 0,
+    //   b: 2,
+    //   beforeCreate() {
+    //     console.log('before-create1');
+    //   },
+    //   created() {
+    //     console.log('create1');
+    //   }
+    // })
+    // Vue.mixin({
+    //   a: 2,
+    //   beforeCreate() {
+    //     console.log('before-create2');
+    //   },
+    //   created() {
+    //     console.log('create2');
+    //   }
+    // })
     const vm = new Vue({
       el: '#app',
+      a: 3,
       data() {
         return {
           username: 'rained',
           arr: [1, 2, 3],
         };
+      },
+      beforeCreate() {
+        console.log('before-create', this.username);
+      },
+      created() {
+        console.log('create', this.username);
       },
       computed: {},
       methods: {},

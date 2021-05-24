@@ -15,6 +15,16 @@ export function lifecycleMixin(Vue) {
   }
 }
 
+export function callHook(vm, hook) {
+  const handlers = vm.$options[hook]
+
+  if (handlers) {
+    for (let i = 0; i < handlers.length; i++) {
+      handlers[i].call(vm)
+    }
+  }
+}
+
 export function mountComponent(vm, el) {
   vm.$el = el
   // 默认vue是通过watcher来进行渲染的（渲染watcher，每一个组件都有一个渲染watcher）
