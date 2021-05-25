@@ -3,7 +3,7 @@ import { createElement, createTextNode } from './vdom/index';
 
 export function renderMixin(Vue) {
   Vue.prototype._c = function (...args) {
-    return createElement(...args);
+    return createElement(this, ...args);
   };
   Vue.prototype._s = function (val) {
     return val === null

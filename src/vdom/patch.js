@@ -1,8 +1,12 @@
 export function patch(oldVnode, vnode) {
+  if (!oldVnode) {
+    return createEle(vnode)
+  }
+
   // 初次渲染的时候，oldVnode为真实dom元素
   const isRealElement = oldVnode.nodeType;
 
-  if (isRealElement) {
+  if (isRealElement) {  
     const oldElm = oldVnode;
     const parentElm = oldElm.parentNode;
 
@@ -14,11 +18,28 @@ export function patch(oldVnode, vnode) {
   }
 }
 
+function createComponent(vnode) {
+  let i = vnode.data;
+
+  if ((i = i.hook) && (i = i.init)) {
+    i(vnode); // 调用组件初始化方法
+  }
+
+  if (vnode.componentInstance) {
+    return true;
+  }
+
+  return false;
+}
+
 function createEle(vnode) {
   let { tag, children, key, data, text } = vnode;
 
   // 普通标签
   if (typeof tag === 'string') {
+    if (createComponent(vnode)) {
+      return vnode.componentInstance.$el;
+    }
     vnode.el = document.createElement(tag);
     updateProperties(vnode);
     children.forEach((child) => {

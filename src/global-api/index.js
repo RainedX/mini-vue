@@ -16,16 +16,13 @@ export function initGlobalAPI(Vue) {
     this.options.components[id] = definition;
     return definition;
   };
-  Vue.extend = function(extendOptions) {
+  Vue.extend = function (extendOptions) {
     const Super = this;
     const Sub = function VueComponent(extendOptions) {
-      this._init(extendOptions)
-    }
-    Sub.options = mergeOptions(
-      Super.options,
-      extendOptions
-    );
-    Sub.prototype = Object.create(Super.prototype)
+      this._init(extendOptions);
+    };
+    Sub.options = mergeOptions(Super.options, extendOptions);
+    Sub.prototype = Object.create(Super.prototype);
     Sub.prototype.constructor = Sub;
     Sub.cid = cid++;
 
@@ -33,5 +30,5 @@ export function initGlobalAPI(Vue) {
     Sub.component = Super.component;
 
     return Sub;
-  }
+  };
 }

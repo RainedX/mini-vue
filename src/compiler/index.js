@@ -7,7 +7,6 @@ export function compileToFunctions(template) {
   // code: _c(div, {id:"app",style:{"color":" red"," background-color":" yellowgreen"}}_c(ul, _c(li, _v(_s(username)+" hello world  "+_s(age))),_c(li, _v("rained"))))
   let code = generate(ast);
   let render = `with(this){return ${code}}`;
-
   let fn = new Function(render);
   return fn;
 }

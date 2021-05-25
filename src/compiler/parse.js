@@ -79,6 +79,7 @@ function processFor(el) {
 }
 
 export function parseHTML(html) {
+  root = "";
   // 根据开始标签、结束标签、文本内容生成一个AST语法树
   function start(tagName, attrs) {
     let element = createASTElement(tagName, attrs);

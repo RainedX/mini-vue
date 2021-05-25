@@ -18,7 +18,7 @@ export function initMixin(Vue) {
   }
 
   Vue.prototype.$mount = function (el) {
-    el = document.querySelector(el)
+    el = el && document.querySelector(el)
 
     const vm = this;
     const options = vm.$options;
@@ -38,6 +38,6 @@ export function initMixin(Vue) {
     }
 
     // 组件挂载
-    mountComponent(vm, el)
+    return mountComponent(vm, el)
   }
 }
