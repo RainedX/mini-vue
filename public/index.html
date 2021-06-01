@@ -7,28 +7,52 @@
     <title>Document</title>
   </head>
   <body>
-    <div id="app">
-      <my-button></my-button>
+    <div id="app" style="color: red;">
+      <p>{{ allInfo }}</p>
     </div>
   </body>
   <script src="/dist/vue.js"></script>
   <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
   <script>
-    Vue.component('my-button', {
-      template: '<button>全局按钮</button>'
-    })
     const vm = new Vue({
       el: '#app',
+      a: 3,
       data() {
         return {
-          username: 'rained'
+          username: 'rained',
+          password: 'xxx',
+          arr: [1, 2, 3],
+          info: {
+            age: 10
+          }
         };
       },
-      components: {
-        'my-button': {
-          template: '<button>内部按钮</button>'
+      computed: {
+        allInfo() {
+          // 会有缓存
+          // 在页面没有调用的时候不会立即执行，watcher内部会在内部对变量取值
+          return this.username + this.password
         }
-      }
+      },
+      // watch: {
+      //   "info.age": {
+      //     handler: function(newVal) {
+      //       console.log("watch:", newVal);
+      //     },
+      //     sync: true
+      //   }
+      // }
     });
+
+    setTimeout(() => {
+    // vm.info.age = 100;
+    //   vm.info.age = 200;
+      vm.username = 'yy';
+    }, 1000);
   </script>
 </html>
+
+<!-- 1.将模板变成render方法，render() { return _l(5, _c('li', {}, name)) }
+2.去当前的实例上取值 with
+3.虚拟dom ===> 对象 描述dom结构（diff算法）
+4.生成真实dom -->

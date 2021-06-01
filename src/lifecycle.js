@@ -25,6 +25,7 @@ export function mountComponent(vm, el) {
     // vm_render生成vnode
     vm._update(vm._render())
   }
-
+  // true 代表是渲染watcher
   new Watcher(vm, updateComponent, () => {}, true)
+  console.log('render---watcher');
 }

@@ -64,7 +64,7 @@ function makeMap(str, expectsLowerCase) {
 
 const isReservedTag = makeMap(
   'template,script,style,element,content,slot,link,meta,svg,view,' +
-    'a,p,button,div,img,image,text,span,input,switch,textarea,spinner,select,' +
+    'a,p,li,ul,button,div,img,image,text,span,input,switch,textarea,spinner,select,' +
     'slider,slider-neighbor,indicator,canvas,' +
     'list,cell,header,loading,loading-indicator,refresh,scrollable,scroller,' +
     'video,web,embed,tabbar,tabheader,datepicker,timepicker,marquee,countdown',

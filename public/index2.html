@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <my-button></my-button>
+    </div>
+  </body>
+  <script src="/dist/vue.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+  <script>
+    Vue.component('my-button', {
+      template: '<button>全局按钮</button>'
+    })
+    const vm = new Vue({
+      el: '#app',
+      data() {
+        return {
+          username: 'rained',
+          arr: [1, 2]
+        };
+      },
+      components: {
+        'my-button': {
+          template: '<button>内部按钮</button>'
+        }
+      }
+    });
+  </script>
+</html>
